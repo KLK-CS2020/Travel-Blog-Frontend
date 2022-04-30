@@ -14,8 +14,9 @@ pipeline{
                         sh "npm i @vue/cli-service"
                         sh "npm run build "
                     }
-
                     //docker compose..
+                      sh "docker build -t image1 ." //modify that
+                      sh "docker run --name app-container -d -p 8091:80 image1"
                 }
                 post{
                     always {
@@ -32,7 +33,7 @@ pipeline{
 
               stage("test"){
                 steps{
-                    sh "echo 'some tests'"
+                    sh "echo 'some tests'" // to add later
                 }
               }
 
