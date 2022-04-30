@@ -7,21 +7,18 @@ pipeline{
 
 
      stages{
-            stage('Initialize'){
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-
-              stage("build"){
+          parallel   stage("build"){
                 steps{
                     dir("hello-world") {
                         sh "npm install"
                         sh "npm i @vue/cli-service"
                         sh "npm run build "
+
+                          sh "docker build -t image1 ." //modify that
+                          sh "docker run -privileged --name app-container -d -p 8091:80 image1"
                     }
                     //docker compose..
-                      sh "docker build -t image1 ." //modify that
-                      sh "docker run --name app-container -d -p 8091:80 image1"
+
                 }
                 post{
                     always {
