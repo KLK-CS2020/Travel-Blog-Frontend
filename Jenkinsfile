@@ -10,7 +10,9 @@ pipeline{
               stage("build"){
                 steps{
                     dir("hello-world") {
-                        sh "npm run build  "
+                        sh "npm -g install"
+                        sh "npm i @vue/cli-service"
+                        sh "npm run build "
                     }
 
                     //docker compose..
