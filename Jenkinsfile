@@ -7,7 +7,7 @@ pipeline{
 
 
      stages{
-          parallel   stage("build"){
+           stage("build"){
                 steps{
                     dir("hello-world") {
                         sh "npm install"
