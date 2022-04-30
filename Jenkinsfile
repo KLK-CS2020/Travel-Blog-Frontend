@@ -10,7 +10,7 @@ pipeline{
               stage("build"){
                 steps{
                     dir("hello-world") {
-                        sh "npm run build"
+                        sh "npm run build  "
                     }
 
                     //docker compose..
