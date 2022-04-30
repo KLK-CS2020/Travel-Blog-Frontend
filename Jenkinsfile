@@ -26,11 +26,15 @@ pipeline{
               }
 
               stage("test"){
-                 sh "echo 'some tests'"
+                steps{
+                    sh "echo 'some tests'"
+                }
               }
 
               stage("deliver"){
-                      sh "echo 'some delivery'"
+                steps{
+                    sh "echo 'some delivery'"
+                }
               }
      }
 }
