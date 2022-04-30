@@ -1,4 +1,4 @@
-# frontend-travel-blog
+# hello-world
 
 ## Project setup
 ```

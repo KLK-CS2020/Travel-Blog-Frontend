@@ -9,7 +9,10 @@ pipeline{
      stages{
               stage("build"){
                 steps{
-                    sh "npm run build"
+                    dir("gym-one-fr") {
+                        sh "npm run build"
+                    }
+
                     //docker compose..
                 }
                 post{
