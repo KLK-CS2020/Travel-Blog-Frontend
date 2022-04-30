@@ -3,7 +3,7 @@ FROM node:lts-alpine as build-stage
 WORKDIR /hello-world
 COPY package*.json ./
 RUN npm install
-COPY . .
+COPY .. .
 RUN npm run build
 
 #
