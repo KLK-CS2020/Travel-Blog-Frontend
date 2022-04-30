@@ -9,7 +9,7 @@ pipeline{
      stages{
               stage("build"){
                 steps{
-                    dir("gym-one-fr") {
+                    dir("hello-world") {
                         sh "npm run build"
                     }
 
