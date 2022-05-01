@@ -34,11 +34,21 @@ pipeline{
                     sh "echo 'some tests'" // to add later
                 }
               }
+              stage("Clean container"){
+                steps{
+                    script{
+                        try{
+                            sh "docker rm -f frontend-container"
+                        }finally{ }
+
+                    }
+
+                }
+              }
 
              stage("Deploy") {
                        steps{
                            sh "docker build -t frontend-image ."
-                           sh "docker rm -f frontend-container"
                            sh "docker run --name frontend-container -d -p 8091:80 frontend-image"
                        }
                   post{
