@@ -1,3 +1,3 @@
 #
 FROM nginx
-COPY /hello-world/dist    /usr/share/nginx/html
+COPY /dist    /usr/share/nginx/html
