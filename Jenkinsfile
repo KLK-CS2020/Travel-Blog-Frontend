@@ -15,10 +15,11 @@ pipeline{
                         sh "npm run build "
 
                     }
-
-                     sh "docker build . -t test111"
+                    // sh "docker build . -t test111"
                     //docker compose..
-
+                    sh "docker build -t frontendImage ."
+                    sh "docker rm -f frontend-container"
+                    sh "docker run --name frontend-container -d -p 8091:80 weather-api"
                 }
                 post{
                     always {
