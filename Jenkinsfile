@@ -15,11 +15,6 @@ pipeline{
                         sh "npm run build "
 
                     }
-                    // sh "docker build . -t test111"
-                    //docker compose..
-                    sh "docker build -t frontend-image ."
-                    sh "docker rm -f frontend-container"
-                    sh "docker run --name frontend-container -d -p 8091:80 frontend-image"
                 }
                 post{
                     always {
@@ -40,10 +35,23 @@ pipeline{
                 }
               }
 
-              stage("deliver"){
-                steps{
-                    sh "echo 'some delivery'"
-                }
-              }
+             stage("Deploy") {
+                       steps{
+                           sh "docker build -t frontend-image ."
+                           sh "docker rm -f frontend-container"
+                           sh "docker run --name frontend-container -d -p 8091:80 frontend-image"
+                       }
+                  post{
+                            always {
+                                sh "echo 'deploying frontend finished'"
+                            }
+                            success {
+                                sh "echo 'deploying frontend succeeded'"
+                            }
+                            failure {
+                                sh "echo 'deploying frontend failed'"
+                            }
+                     }
+             }
      }
 }
