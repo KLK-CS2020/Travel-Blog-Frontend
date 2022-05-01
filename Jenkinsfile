@@ -38,9 +38,8 @@ pipeline{
                 steps{
                     script{
                         try{
-                            sh "docker rm -f frontend-container"
+                            sh "docker-compose down"
                         }finally{ }
-
                     }
 
                 }
@@ -48,10 +47,9 @@ pipeline{
 
              stage("Deploy") {
                        steps{
-                           sh "docker build -t frontend-image ."
-                           sh "docker run --name frontend-container -d -p 8091:80 frontend-image"
+                           sh "docker-compose up -d"
                        }
-                  post{
+                        post{
                             always {
                                 sh "echo 'deploying frontend finished'"
                             }
